@@ -56,7 +56,7 @@ void sort_vector(vector<Task> &myVector, int n)
 
 }
 
-void sort_by_preparation(TxtReader datas)
+void sort_by_preparation(TxtReader &datas)
 {
 	sort_vector(datas._tasks, datas._counter);
 	
@@ -79,7 +79,7 @@ int max_of_list(vector<int> task, int lenght)
 	return temp;
 }
 
-void get_time(TxtReader datas)
+void get_time(TxtReader &datas)
 {
 	int counter = 0;
 
@@ -91,11 +91,11 @@ void get_time(TxtReader datas)
 		if (counter < tasks[i].prepare)
 		{
 			counter = tasks[i].prepare;
-			//tasks[i].prepare = tasks[i].prepare - counter;
 		}
 		counter += tasks[i].work;
-
+		cout << "Counter : " << counter << "  ";
 		end_times.push_back(counter + tasks[i].end);
+		cout << end_times[i] << endl;
 	}
 	int max_time = max_of_list(end_times, datas._counter);
 
