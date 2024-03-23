@@ -49,16 +49,10 @@ TxtReader read_data(string file_path)
 	return TxtReader(1, iterator, file_tasks);
 }
 
-void sort_vector_by_end(vector<Task>& myVector, int n)
-{
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 1; j < n; j++)
-		{
-			if (myVector[j - 1].end < myVector[j].end)
-				swap(myVector[j - 1], myVector[j]);
-		}
-	}
+void sort_vector_by_end_descending(vector<Task>& myVector) {
+	sort(myVector.begin(), myVector.end(), [](const Task& a, const Task& b) {
+		return a.end > b.end;
+		});
 }
 
 void sort_vector(vector<Task> &myVector, int n)
@@ -130,8 +124,6 @@ vector<Task> sollution_1(TxtReader& datas)
 	vector<Task> tasks = datas._tasks;
 	int time = tasks[0].prepare;
 
-	//time = tasks[0].prepare + tasks[0].work;
-
 	while (order.size() != datas._counter)
 	{
 		for (int i = 0; i < tasks.size(); i++)
@@ -140,11 +132,12 @@ vector<Task> sollution_1(TxtReader& datas)
 			{
 				avaliabeTask.push_back(tasks[i]);
 				tasks.erase(tasks.begin() + i);
+				i = -1;
 			}
 		}
 		if (avaliabeTask.size() != 0)
 		{
-			sort_vector_by_end(avaliabeTask, avaliabeTask.size());
+			sort_vector_by_end_descending(avaliabeTask);
 			time += avaliabeTask[0].work;
 			order.push_back(avaliabeTask[0]);
 			avaliabeTask.erase(avaliabeTask.begin());
@@ -156,6 +149,7 @@ vector<Task> sollution_1(TxtReader& datas)
 	}
 	cout << endl << "Size: " << datas._tasks.size() << endl;
 	cout << endl << "Size: " << order.size() << endl;
+	show_vector(order);
 	return order;
 }
 
@@ -164,7 +158,7 @@ int main()
 	TxtReader reader2 = read_data("zadanie1.txt");
 	sort_by_preparation(reader2);
 	reader2._tasks = sollution_1(reader2);
-	show_vector(reader2._tasks);
+	//show_vector(reader2._tasks);
 	get_time(reader2);
 }
 
