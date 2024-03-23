@@ -6,7 +6,6 @@
 
 using namespace std;
 
-
 class TxtReader
 {
 	public:
@@ -21,10 +20,4 @@ class TxtReader
 			this->_counter = counter;
 			this->_tasks = tasks;
 		}
-
-		
-
 };
-
-
-
