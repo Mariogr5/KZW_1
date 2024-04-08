@@ -11,7 +11,6 @@ class TxtReader
 	public:
 		int _number_of_task;
 		int _counter;
-
 		vector<Task> _tasks;
 
 		TxtReader(int number_of_task, int counter, vector<Task> tasks)
