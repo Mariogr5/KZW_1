@@ -30,7 +30,6 @@ TxtReader read_data(string file_path)
 	else
 		cout << "Poprawnie wczytano plik" <<endl;
 
-
 	int iterator = 0;
 	string line;
 	while (getline(infile, line)) {
@@ -136,8 +135,6 @@ vector<Task> sollution_1(TxtReader& datas)
 			time = tasks[0].prepare;
 		}
 	}
-	cout << endl << "Size: " << datas._tasks.size() << endl;
-	cout << endl << "Size: " << order.size() << endl;
 	show_vector(order);
 	return order;
 }
