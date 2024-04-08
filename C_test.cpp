@@ -17,6 +17,17 @@ void show_vector(vector<Task>& tasks)
 	}
 }
 
+
+void show_task_order(vector<Task>& tasks)
+{
+	for (int i = 0; i < tasks.size(); i++)
+	{
+		cout << tasks[i].number_of_task << " ";
+	}
+}
+
+
+
 TxtReader read_data(string file_path)
 {
 	ifstream infile(file_path);
@@ -31,6 +42,7 @@ TxtReader read_data(string file_path)
 		cout << "Poprawnie wczytano plik" <<endl;
 
 	int iterator = 0;
+	int numerator = 1;
 	string line;
 	while (getline(infile, line)) {
 		istringstream iss(line);
@@ -39,8 +51,9 @@ TxtReader read_data(string file_path)
 			break;
 		}
 
-		file_tasks.push_back(Task(a, b, c));
+		file_tasks.push_back(Task(a, b, c, numerator));
 		iterator++;
+		numerator++;
 	}
 	
 	return TxtReader(1, iterator, file_tasks);
@@ -136,6 +149,7 @@ vector<Task> sollution_1(TxtReader& datas)
 		}
 	}
 	show_vector(order);
+	show_task_order(order);
 	return order;
 }
 
@@ -145,7 +159,7 @@ int main()
 	sort_by_preparation(reader2);
 	reader2._tasks = sollution_1(reader2);
 	//sollution_2(reader2);
-	show_vector(reader2._tasks);
+	//show_vector(reader2._tasks);
 	get_time(reader2);
 }
 
